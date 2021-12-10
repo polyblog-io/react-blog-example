@@ -1,4 +1,4 @@
-import './single.css';
+import './single.scss';
 
 
 const Single = () => {

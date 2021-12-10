@@ -1,17 +1,17 @@
 import React from 'react';
-import './header.css';
+import './header.scss';
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <div className="header">
             <h2>
-                <a href="#">PolyBlog</a>
+                <Link to="#" className="pageTitle">PolyBlog</Link>
             </h2>
             <ul className="headerList">
-                <a href="#">Contact</a>
-                <a href="#">Write</a>
-                <a href="#">Login</a>
-                <a href="#">Register</a>
+                <Link to="#" className="navLink">Login</Link>
+                <Link to="#" className="navLink">Blog</Link>
+                <Link to="#" className="navLink btn">Get Started</Link>
             </ul>
         </div>
     )

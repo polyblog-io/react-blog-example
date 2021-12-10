@@ -1,0 +1,68 @@
+.hero {
+    position: relative;
+}
+.heroContainer {
+    background-color: rgb(51,41,163);
+    color: #fff;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    height: calc(100vh + 5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 0;
+
+    h1 {
+        font-size: 5rem;
+        -o-animation: welcome 2s 1 forwards;
+        -moz-animation: welcome 2s 1 forwards;
+        -webkit-animation: welcome 2s 1 forwards;
+        animation: welcome 2s 1 forwards;
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin-top: 0;
+        -o-animation: welcomeText 2s 1 forwards;
+        -moz-animation: welcomeText 2s 1 forwards;
+        -webkit-animation: welcomeText 2s 1 forwards;
+        animation: welcomeText 2s 1 forwards;
+
+    }
+}
+
+
+@keyframes welcome {
+    0% {
+        opacity: .3;
+        transform: translateX(-150%);
+    }
+
+    50% {
+        opacity: .8;
+        transform: translateX(5rem);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes welcomeText {
+    0% {
+        opacity: .3;
+        transform: translateX(150%);
+    }
+
+    50% {
+        opacity: .8;
+        transform: translateX(-5rem);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
