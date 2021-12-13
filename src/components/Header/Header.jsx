@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <div className="header">
             <h2>
-                <Link to="#" className="pageTitle">PolyBlog</Link>
+                <Link to="/" className="pageTitle">PolyBlog</Link>
             </h2>
             <ul className="headerList">
                 <Link to="#" className="navLink">Login</Link>

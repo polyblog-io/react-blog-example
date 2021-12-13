@@ -15,12 +15,14 @@
 
     .articles {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
+        justify-content: flex-start;
         padding: 0;
 
         .article {
             width: 30%;
             margin-right: 2rem;
+            margin-bottom: 3rem;
             box-shadow: 0 0 25px -15px rgba(0, 0, 0, .5);
             transition: .5s ease-in-out;
 
