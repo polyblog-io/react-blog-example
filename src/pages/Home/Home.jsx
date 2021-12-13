@@ -4,12 +4,13 @@ import Hero from '../../components/Hero/Hero';
 import RecentArticles from '../../components/RecentArticles/RecentArticles';
 import Footer from '../../components/Footer/Footer';
 
-const Home = () => {
+const Home = ({ category, setCategory}) => {
+
     return (
         <div className="home">
-            <Header />
+            <Header category={category} setCategory={setCategory}/>
             <Hero />
-            <RecentArticles />
+            <RecentArticles category={category} setCategory={setCategory}/>
             <Footer />
         </div>
     )

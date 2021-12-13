@@ -1,6 +1,9 @@
 import "./singleBlogBody.scss";
+import { useLocation } from "react-router-dom";
 
 const SingleBlogBody = () => {
+    const location = useLocation();
+    console.log(location)
     return (
         <div className="singleBlogBody">
             <div className="singleBlogContent">
