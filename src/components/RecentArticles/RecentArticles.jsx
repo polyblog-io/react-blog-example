@@ -1,10 +1,10 @@
+import getArticles from '@polyblog/polyblog-js-client/getArticles'
 import { Link } from "react-router-dom";
 import "./recentArticles.scss";
 import { Articles } from "../../dummyData";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import RecentArticle from "../RecentArticle/RecentArticle";
-import getArticles from '@polyblog/polyblog-js-client/getArticles'
 
 const RecentArticles = () => {
 
