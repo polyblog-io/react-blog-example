@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import "./recentArticles.scss";
 import { Articles } from "../../dummyData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
+import RecentArticle from "../RecentArticle/RecentArticle";
+import getArticles from '@polyblog/polyblog-js-client/getArticles'
 
 const RecentArticles = () => {
 
@@ -12,45 +13,38 @@ const RecentArticles = () => {
     const [category, setCategory] = useState(location)
     console.log('category', category)
 
-    console.log(location)
+    const getArticle = (data) => {
+        data.forEach((single) => {
+            setArticle(single)
+            // console.log('single',single)
+        })
+    }
 
+    useEffect(() => {
+        getArticle(Articles)
+        console.log('Single Article', article)
+    }, [article, category])
 
     return (
         <div className="recentArticles">
             <h1>Recent Articles</h1>
             <div className="articles">
                 {Articles.map((item, key) => (
-                    category === '/en' || '/' &&
+                    category === '/en' ? 
                     item.lang === 'en' && 
-                        <Link 
-                            to={{pathname: `/en/${item.title}`}} 
-                            className="article" key={item.id} 
-                        >
-                            <div className="imgContainer">
-                                <img src={item.imgUrl} alt={item.title}/>
-                            </div>
-                            <div className="articleBody">
-                                <span>{item.author}</span> - <span>{item.createdAt}</span>
-                                <h3>{item.title}</h3>
-                                <p>{item.body}</p>
-                            </div>
-                        </Link> 
-                    ||
-                    category === '/es' && item.lang === 'es' && 
-                        <Link 
-                            to={{pathname: `/es/${item.title}`, item: item}} 
-                            className="article" key={item.id}
-                            
-                        >
-                            <div className="imgContainer">
-                                <img src={item.imgUrl} alt={item.title}/>
-                            </div>
-                            <div className="articleBody">
-                                <span>{item.author}</span> - <span>{item.createdAt}</span>
-                                <h3>{item.title}</h3>
-                                <p>{item.body}</p>
-                            </div>
-                        </Link> 
+                        <Link to={{pathname: `/${item.lang}/${item.title}`, article: article}} key={item.id} className="articleLink">
+                            <RecentArticle item={item} category={category}/> 
+                        </Link>
+                    :
+                    category === '/es' ?
+                    item.lang === 'es' && 
+                        <Link to={{pathname: `/${item.lang}/${item.title}`}} key={item.id} className="articleLink">
+                            <RecentArticle item={item} category={category}/>
+                        </Link>
+                    : 
+                        <Link to={{pathname: `/${item.lang}/${item.title}`}} key={item.id} className="articleLink">
+                            <RecentArticle item={item} category={category}/>
+                        </Link>
                     
                 ))}
                 

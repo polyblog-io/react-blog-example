@@ -1,11 +1,11 @@
 import "./hero.scss";
 
-const Hero = () => {
+const Hero = ({ welcomeNote, welcomeText }) => {
     return (
         <div className="hero">
             <div className="heroContainer">
-                <h1>Welcome to Polyblog</h1>
-                <p>Explore millions of blog articles</p>
+                <h1>{ welcomeNote }</h1>
+                <p>{ welcomeText }</p>
             </div>
         </div>
     )
