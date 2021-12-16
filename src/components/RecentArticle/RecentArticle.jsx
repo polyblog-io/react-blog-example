@@ -1,16 +1,16 @@
 import "./recentArticle.scss";
 
-const RecentArticle = ({ item }) => {
+const RecentArticle = ({ article }) => {
 
     return (
-        <div className="article" key={item.id}>
+        <div className="article" key={article.id}>
             <div className="imgContainer">
-                <img src={item.imgUrl} alt={item.title}/>
+                <img src={article.coverUrl} alt={article.title}/>
             </div>
             <div className="articleBody">
-                <span>{item.author}</span> - <span>{item.createdAt}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
+                <span>{article.author}</span> - <span>{article.createdAt}</span>
+                <h3>{article.title}</h3>
+                <p>{article.body}</p>
             </div>
         </div>
     )

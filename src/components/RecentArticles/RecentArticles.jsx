@@ -1,7 +1,6 @@
-import getArticles from '@polyblog/polyblog-js-client/getArticles'
+import { getArticles } from '@polyblog/polyblog-js-client'
 import { Link } from "react-router-dom";
 import "./recentArticles.scss";
-import { Articles } from "../../dummyData";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import RecentArticle from "../RecentArticle/RecentArticle";
@@ -9,41 +8,47 @@ import RecentArticle from "../RecentArticle/RecentArticle";
 const RecentArticles = () => {
 
     const location = useLocation().pathname
-    const [article, setArticle] = useState({})
-    const [category, setCategory] = useState(location)
-    console.log('category', category)
-
-    const getArticle = (data) => {
-        data.forEach((single) => {
-            setArticle(single)
-            // console.log('single',single)
-        })
-    }
-
+    const [articles, setArticles] = useState()
+    const locale = location.replace('/', '')
+    
     useEffect(() => {
-        getArticle(Articles)
-        console.log('Single Article', article)
-    }, [article, category])
+
+        if (articles) return
+
+        const fetchArticles = async () => {
+            let articles = await getArticles({
+              organizationId: 'c398463407b5c12f27f9aed4',
+              project: 'polyblog',
+              locale, 
+              published: true,
+              sortDirection: 'DESC',
+            })
+            console.log({articles})
+            setArticles(articles)
+        }
+
+        fetchArticles()
+    }, [articles, locale])
 
     return (
         <div className="recentArticles">
             <h1>Recent Articles</h1>
             <div className="articles">
-                {Articles.map((item, key) => (
-                    category === '/en' ? 
-                    item.lang === 'en' && 
-                        <Link to={{pathname: `/${item.lang}/${item.title}`, article: article}} key={item.id} className="articleLink">
-                            <RecentArticle item={item} category={category}/> 
+                {articles?.map(article => (
+                    locale === '/en' ? 
+                    article.locale === 'en' && 
+                        <Link to={{pathname: `/${article.locale}/${article.title}`, article: article}} key={article.id} className="articleLink">
+                            <RecentArticle article={article} locale={locale}/> 
                         </Link>
                     :
-                    category === '/es' ?
-                    item.lang === 'es' && 
-                        <Link to={{pathname: `/${item.lang}/${item.title}`}} key={item.id} className="articleLink">
-                            <RecentArticle item={item} category={category}/>
+                    locale === '/es' ?
+                    article.locale === 'es' && 
+                        <Link to={{pathname: `/${article.locale}/${article.title}`}} key={article.id} className="articleLink">
+                            <RecentArticle article={article} locale={locale}/>
                         </Link>
                     : 
-                        <Link to={{pathname: `/${item.lang}/${item.title}`}} key={item.id} className="articleLink">
-                            <RecentArticle item={item} category={category}/>
+                        <Link to={{pathname: `/${article.locale}/${article.title}`}} key={article.id} className="articleLink">
+                            <RecentArticle article={article} locale={locale}/>
                         </Link>
                     
                 ))}
