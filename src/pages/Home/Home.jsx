@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticles } from '@polyblog/polyblog-js-client';
 import { useParams, Link } from 'react-router-dom';
-import RecentArticle from "../../components/RecentArticle/RecentArticle";
+import ArticleCard from "../../components/ArticleCard/ArticleCard";
 import './home.scss';
 
 const Home = () => {
@@ -35,17 +35,17 @@ const Home = () => {
                     locale === '/en' ? 
                     article.locale === 'en' && 
                         <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <RecentArticle article={article} locale={locale}/> 
+                            <ArticleCard article={article} locale={locale}/> 
                         </Link>
                     :
                     locale === '/es' ?
                     article.locale === 'es' && 
                         <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <RecentArticle article={article} locale={locale}/>
+                            <ArticleCard article={article} locale={locale}/>
                         </Link>
                     : 
                         <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <RecentArticle article={article} locale={locale}/>
+                            <ArticleCard article={article} locale={locale}/>
                         </Link>
                     
                 ))}

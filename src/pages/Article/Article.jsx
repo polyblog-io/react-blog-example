@@ -1,6 +1,5 @@
 import { getArticles } from '@polyblog/polyblog-js-client';
 import { useState, useEffect } from 'react';
-import Footer from '../../components/Footer/Footer';
 import './article.scss';
 import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
@@ -44,11 +43,10 @@ const Article = () => {
                 </div>
             </div>
             <div className="articleBlogBody">
-            <div className="articleBlogContent">
-               {article?.content}
+                <div className="articleBlogContent">
+                  {article?.content}
+                </div>
             </div>
-        </div>
-            <Footer />
         </div>
     )
 }
