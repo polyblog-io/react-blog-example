@@ -1,9 +1,9 @@
-.singleBlogTop {
+.articleBlogTop {
     position: relative;
     height: 83vh;
     color: white;
 
-    .singleBlogHeader {
+    .articleBlogHeader {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -31,7 +31,7 @@
         object-fit: cover;
     }
 
-    .singleBlogHeaderOverlay {
+    .articleBlogHeaderOverlay {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -41,7 +41,7 @@
         z-index: -2;
     }
 
-    .singleBlogHero {
+    .articleBlogHero {
         padding-left: 20%;
         margin-top: 9rem;
         max-width: 1000px;
@@ -64,9 +64,9 @@
     }
 }
 
-.singleBlogBody {
+.articleBlogBody {
     margin-top: 5rem;
-    .singleBlogContent {
+    .articleBlogContent {
         width: 50%;
         margin: 0 auto;
         letter-spacing: .08rem;

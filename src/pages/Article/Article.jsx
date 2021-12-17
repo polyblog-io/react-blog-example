@@ -1,12 +1,12 @@
 import { getArticles } from '@polyblog/polyblog-js-client';
 import { useState, useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
-import './single.scss';
+import './article.scss';
 import { useLocation, Link } from 'react-router-dom';
 import moment from 'moment';
 
 
-const Single = () => {
+const Article = () => {
     const {pathname: location} = useLocation()
     const [article, setArticle] = useState()
     const slug = location.split("/")[2]
@@ -26,8 +26,8 @@ const Single = () => {
                 slugLocalized: slug,
             })
             console.log({articles})
-            let singleArticle = articles?.[0]
-            setArticle(singleArticle)
+            let articleArticle = articles?.[0]
+            setArticle(articleArticle)
 
         }
 
@@ -35,9 +35,9 @@ const Single = () => {
     }, [article, locale, slug])
 
     return (
-        <div className="single">
-            <div className="singleBlogTop">
-                <div className="singleBlogHeader">
+        <div className="article">
+            <div className="articleBlogTop">
+                <div className="articleBlogHeader">
                     <h3>Polyblog Blog</h3>
                     <ul>
                         <Link className="link" to="#">POLYBLOG</Link>
@@ -49,15 +49,15 @@ const Single = () => {
                     </ul>
                 </div>
                 <img src={article?.coverUrl} alt={article?.title} />
-                <div className="singleBlogHeaderOverlay"></div>
-                <div className="singleBlogHero">
+                <div className="articleBlogHeaderOverlay"></div>
+                <div className="articleBlogHero">
                     <h1>{article?.title}</h1>
                     <h3>{article?.subtitle}</h3>
                     <i>Posted by <span>{article?.author}</span> on <span>{moment(article?.creationTime).format('MMMM D, YYYY')}</span></i>
                 </div>
             </div>
-            <div className="singleBlogBody">
-            <div className="singleBlogContent">
+            <div className="articleBlogBody">
+            <div className="articleBlogContent">
                {article?.content}
             </div>
         </div>
@@ -66,4 +66,4 @@ const Single = () => {
     )
 }
 
-export default Single
+export default Article
