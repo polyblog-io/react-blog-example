@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import moment from 'moment'
 import { getArticles } from '@polyblog/polyblog-js-client'
 import { useParams, Link } from 'react-router-dom'
 import './homePage.scss'
@@ -54,7 +53,11 @@ const HomePage = () => {
                 </div>
                 <div className="articleBody">
                   <span>{author}</span> -{' '}
-                  <span>{moment(creationTime).format('MMMM D, YYYY')}</span>
+                  <span>
+                    {new Date(creationTime).toLocaleString(locale, {
+                      dateStyle: 'long',
+                    })}
+                  </span>
                   <h3>{title}</h3>
                   <p>{subtitle}</p>
                 </div>

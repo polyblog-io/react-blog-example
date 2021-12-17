@@ -1,7 +1,6 @@
 import { getArticles } from '@polyblog/polyblog-js-client'
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import moment from 'moment'
 import './articlePage.scss'
 
 const ArticlePage = () => {
@@ -33,16 +32,24 @@ const ArticlePage = () => {
             <h3>Blog</h3>
           </Link>
         </div>
-        <img src={article?.coverUrl} alt={article?.title} />
-        <div className="articleBlogHeaderOverlay"></div>
-        <div className="articleBlogHero">
-          <h1>{article?.title}</h1>
-          <h3>{article?.subtitle}</h3>
-          <i>
-            Posted by <span>{article?.author}</span> on{' '}
-            <span>{moment(article?.creationTime).format('MMMM D, YYYY')}</span>
-          </i>
-        </div>
+        {article && (
+          <>
+            <img src={article?.coverUrl} alt={article?.title} />
+            <div className="articleBlogHeaderOverlay"></div>
+            <div className="articleBlogHero">
+              <h1>{article?.title}</h1>
+              <h3>{article?.subtitle}</h3>
+              <i>
+                Posted by <span>{article?.author}</span> on{' '}
+                <span>
+                  {new Date(article?.creationTime).toLocaleString(locale, {
+                    dateStyle: 'long',
+                  })}
+                </span>
+              </i>
+            </div>
+          </>
+        )}
       </div>
       <div className="articleBlogBody">
         <div
