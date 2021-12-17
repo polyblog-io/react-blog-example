@@ -1,9 +1,9 @@
 import './App.css';
-import Home from './pages/Home/Home';
+import HomePage from './pages/HomePage/HomePage';
 import {
   BrowserRouter as Router, Routes, Route
 } from 'react-router-dom';
-import Single from './pages/Single/Single';
+import ArticlePage from './pages/ArticlePage/ArticlePage';
 
 
 
@@ -12,11 +12,9 @@ function App() {
   return (
     <Router className="App">
       <Routes>
-        <Route path="/" element={<Home />} exact/>
-        <Route path="/en" element={<Home/>} />
-        <Route path="/en/:englishArticle" element={<Single />} />
-        <Route path="/es" element={<Home />} />
-        <Route path="/es/:spanishArticle" element={<Single />} />
+        <Route path="/" element={<HomePage />} exact/>
+        <Route path="/:locale" element={<HomePage />} />
+        <Route path="/:locale/:slug" element={<ArticlePage />} />
       </Routes>
     </Router>
   );

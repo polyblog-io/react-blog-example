@@ -1,15 +1,13 @@
 import { getArticles } from '@polyblog/polyblog-js-client'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./recentArticles.scss";
 import { useState, useEffect } from "react";
-import RecentArticle from "../RecentArticle/RecentArticle";
+import ArticleCard from '../ArticleCard/ArticleCard';
 
 const RecentArticles = () => {
 
-    const location = useLocation().pathname
     const [articles, setArticles] = useState()
-    const locale = location.replace('/', '')
-    console.log(locale)
+    const { locale } = useParams();
     
     useEffect(() => {
 
@@ -35,20 +33,13 @@ const RecentArticles = () => {
             <h1>Recent Articles</h1>
             <div className="articles">
                 {articles?.map(article => (
-                    locale === '/en' ? 
-                    article.locale === 'en' && 
-                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <RecentArticle article={article} locale={locale}/> 
-                        </Link>
-                    :
-                    locale === '/es' ?
-                    article.locale === 'es' && 
-                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <RecentArticle article={article} locale={locale}/>
-                        </Link>
-                    : 
-                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <RecentArticle article={article} locale={locale}/>
+                    article.locale === locale &&
+                        <Link 
+                            to={{pathname: `/${article.locale}/${article.slugLocalized}`}} 
+                            key={article._id} 
+                            className="articleLink"
+                        >
+                            <ArticleCard article={article} /> 
                         </Link>
                     
                 ))}

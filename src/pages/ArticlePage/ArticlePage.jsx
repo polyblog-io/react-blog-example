@@ -1,37 +1,35 @@
 import { getArticles } from '@polyblog/polyblog-js-client';
 import { useState, useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
-import './single.scss';
-import { useLocation, Link } from 'react-router-dom';
+import './articlePage.scss';
+import { Link, useParams } from 'react-router-dom';
 import moment from 'moment';
 
 
-const Single = () => {
-    const {pathname: location} = useLocation()
+const ArticlePage = () => {
+    const { locale, slug } = useParams();
     const [article, setArticle] = useState()
-    const slug = location.split("/")[2]
-    const locale = location.split("/")[1]
-    console.log("location:", location)
     console.log("locale: ", locale)
     console.log("slug: ", slug)
 
     useEffect(() => {
 
         if (article) return 
-        const fetchArticles = async() => {
+        const fetchArticle = async() => {
             let articles = await getArticles({
                 organizationId: 'c398463407b5c12f27f9aed4',
                 project: 'polyblog',
                 locale,
                 slugLocalized: slug,
             })
-            console.log({articles})
+            // console.log('SLUG', slug)
+            // console.log({articles})
             let singleArticle = articles?.[0]
             setArticle(singleArticle)
 
         }
 
-        fetchArticles()
+        fetchArticle()
     }, [article, locale, slug])
 
     return (
@@ -53,7 +51,10 @@ const Single = () => {
                 <div className="singleBlogHero">
                     <h1>{article?.title}</h1>
                     <h3>{article?.subtitle}</h3>
-                    <i>Posted by <span>{article?.author}</span> on <span>{moment(article?.creationTime).format('MMMM D, YYYY')}</span></i>
+                    <i>Posted by 
+                        <span>{article?.author}</span> on 
+                        <span>{moment(article?.creationTime).format('MMMM D, YYYY')}</span>
+                    </i>
                 </div>
             </div>
             <div className="singleBlogBody">
@@ -66,4 +67,4 @@ const Single = () => {
     )
 }
 
-export default Single
+export default ArticlePage

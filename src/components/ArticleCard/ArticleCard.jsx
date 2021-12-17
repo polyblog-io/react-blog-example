@@ -1,10 +1,10 @@
-import "./recentArticle.scss";
+import "./articleCard.scss";
 import moment from "moment";
 
-const RecentArticle = ({ article }) => {
+const ArticleCard = ({ article }) => {
 
     return (
-        <div className="article" key={article.id}>
+        <div className="article">
             <div className="imgContainer">
                 <img src={article.coverUrl} alt={article.title}/>
             </div>
@@ -17,4 +17,4 @@ const RecentArticle = ({ article }) => {
     )
 }
 
-export default RecentArticle
+export default ArticleCard
