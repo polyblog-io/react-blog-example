@@ -28,27 +28,14 @@ const Home = () => {
     }, [articles, locale])
 
     return (
-        <div className="recentArticles">
+        <div className="articlesContainer">
             <h1>Blog</h1>
             <div className="articles">
-                {articles?.map(article => (
-                    locale === '/en' ? 
-                    article.locale === 'en' && 
-                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <ArticleCard article={article} locale={locale}/> 
-                        </Link>
-                    :
-                    locale === '/es' ?
-                    article.locale === 'es' && 
-                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <ArticleCard article={article} locale={locale}/>
-                        </Link>
-                    : 
-                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
-                            <ArticleCard article={article} locale={locale}/>
-                        </Link>
-                    
-                ))}
+                {articles?.map(article =>
+                  <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
+                    <ArticleCard article={article} locale={locale}/> 
+                  </Link>
+                )}
                 
             </div>
         </div>
