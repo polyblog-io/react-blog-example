@@ -1,8 +1,7 @@
 import { getArticles } from '@polyblog/polyblog-js-client'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./recentArticles.scss";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import RecentArticle from "../RecentArticle/RecentArticle";
 
 const RecentArticles = () => {
@@ -10,6 +9,7 @@ const RecentArticles = () => {
     const location = useLocation().pathname
     const [articles, setArticles] = useState()
     const locale = location.replace('/', '')
+    console.log(locale)
     
     useEffect(() => {
 
@@ -37,17 +37,17 @@ const RecentArticles = () => {
                 {articles?.map(article => (
                     locale === '/en' ? 
                     article.locale === 'en' && 
-                        <Link to={{pathname: `/${article.locale}/${article.title}`, article: article}} key={article.id} className="articleLink">
+                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
                             <RecentArticle article={article} locale={locale}/> 
                         </Link>
                     :
                     locale === '/es' ?
                     article.locale === 'es' && 
-                        <Link to={{pathname: `/${article.locale}/${article.title}`}} key={article.id} className="articleLink">
+                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
                             <RecentArticle article={article} locale={locale}/>
                         </Link>
                     : 
-                        <Link to={{pathname: `/${article.locale}/${article.title}`}} key={article.id} className="articleLink">
+                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
                             <RecentArticle article={article} locale={locale}/>
                         </Link>
                     

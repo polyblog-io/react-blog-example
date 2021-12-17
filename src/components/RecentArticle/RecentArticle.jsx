@@ -1,4 +1,5 @@
 import "./recentArticle.scss";
+import moment from "moment";
 
 const RecentArticle = ({ article }) => {
 
@@ -8,9 +9,9 @@ const RecentArticle = ({ article }) => {
                 <img src={article.coverUrl} alt={article.title}/>
             </div>
             <div className="articleBody">
-                <span>{article.author}</span> - <span>{article.createdAt}</span>
+                <span>{article.author}</span> - <span>{moment(article.creationTime).format("MMMM D, YYYY")}</span>
                 <h3>{article.title}</h3>
-                <p>{article.body}</p>
+                <p>{article.subtitle}</p>
             </div>
         </div>
     )

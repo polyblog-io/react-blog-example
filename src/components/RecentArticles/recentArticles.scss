@@ -2,7 +2,6 @@
 
 .recentArticles {
     padding-bottom: 5rem;
-    margin-top: 12rem;
     width: 90%;
     max-width: 1800px;
     margin: 10rem auto 0;
@@ -23,45 +22,17 @@
             width: 30%;
             margin-right: 2rem;
             margin-bottom: 3rem;
-            box-shadow: 0 0 25px -15px rgba(0, 0, 0, .5);
             transition: .5s ease-in-out;
+            box-shadow: 0 0 25px -15px rgba(0, 0, 0, .5);
 
-            .imgContainer {
-                width: 100%;
-                height: 15rem;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            .articleBody {
-                padding: 1rem;
-
-                span {
-                    color: gray;
-                    font-weight: 500;
-                }
-
-                h3 {
-                    color: $primary-color;
-                }
-
-                p {
-                    color: #444;
-                }
-            }
-
-            &:hover {
-                transform: translateY(-.7rem);
-                box-shadow: 0 0 20px 0px rgba(0, 0, 0, .5);
-
-                h3 {
-                    color: $secondary-color;
-                }
-            }
+            // &:hover {
+            //     transform: translateY(-.7rem);
+            //     box-shadow: 0 0 20px 0px rgba(0, 0, 0, .5);
+        
+            //     h3 {
+            //         color: $secondary-color;
+            //     }
+            // }
         }
     }
 }
