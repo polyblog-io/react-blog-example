@@ -1,24 +1,56 @@
+import { useEffect, useState } from "react";
+import { getArticles } from '@polyblog/polyblog-js-client';
+import { useParams, Link } from 'react-router-dom';
+import RecentArticle from "../../components/RecentArticle/RecentArticle";
 import './home.scss';
-import Header from '../../components/Header/Header';
-import Hero from '../../components/Hero/Hero';
-import RecentArticles from '../../components/RecentArticles/RecentArticles';
-import Footer from '../../components/Footer/Footer';
-import { useParams } from 'react-router-dom';
 
 const Home = () => {
     const { locale } = useParams()
+    const [articles, setArticles] = useState()
 
-    console.log({locale}) 
+    useEffect(() => {
+
+        if (articles) return
+
+        const fetchArticles = async () => {
+            let articles = await getArticles({
+              organizationId: 'c398463407b5c12f27f9aed4',
+              project: 'polyblog',
+              locale, 
+              published: true,
+              sortDirection: 'DESC',
+            })
+            console.log({articles})
+            setArticles(articles)
+        }
+
+        fetchArticles()
+    }, [articles, locale])
 
     return (
-        <div className="home">
-            <Header />
-            {locale === 'es' ? 
-                <Hero welcomeNote = 'Bienvenido a Polyblog' welcomeText='Explorar millones de artículos de blogs'/> :
-                <Hero welcomeNote= "Welcome to Polyblog" welcomeText="Explore millions of blog articles"/>
-            }
-            <RecentArticles/>
-            <Footer />
+        <div className="recentArticles">
+            <h1>Blog</h1>
+            <div className="articles">
+                {articles?.map(article => (
+                    locale === '/en' ? 
+                    article.locale === 'en' && 
+                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
+                            <RecentArticle article={article} locale={locale}/> 
+                        </Link>
+                    :
+                    locale === '/es' ?
+                    article.locale === 'es' && 
+                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
+                            <RecentArticle article={article} locale={locale}/>
+                        </Link>
+                    : 
+                        <Link to={{pathname: `/${article.locale}/${article.slug}`, article: article}} key={article._id} className="articleLink">
+                            <RecentArticle article={article} locale={locale}/>
+                        </Link>
+                    
+                ))}
+                
+            </div>
         </div>
     )
 }
