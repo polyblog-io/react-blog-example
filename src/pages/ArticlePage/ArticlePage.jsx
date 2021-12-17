@@ -2,9 +2,9 @@ import { getArticles } from '@polyblog/polyblog-js-client';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
-import './article.scss';
+import './articlePage.scss';
 
-const Article = () => {
+const ArticlePage = () => {
     const { locale, slug } = useParams()
     const [article, setArticle] = useState()
 
@@ -48,4 +48,4 @@ const Article = () => {
     )
 }
 
-export default Article
+export default ArticlePage

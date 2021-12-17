@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { getArticles } from '@polyblog/polyblog-js-client';
 import { useParams, Link } from 'react-router-dom';
 import ArticleCard from "../../components/ArticleCard/ArticleCard";
-import './home.scss';
+import './homePage.scss';
 
 const Home = () => {
-    const { locale } = useParams()
+    const { locale = 'en'} = useParams()
     const [articles, setArticles] = useState()
 
     useEffect(() => {
