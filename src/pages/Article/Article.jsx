@@ -2,18 +2,13 @@ import { getArticles } from '@polyblog/polyblog-js-client';
 import { useState, useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import './article.scss';
-import { useLocation, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
 
 
 const Article = () => {
-    const {pathname: location} = useLocation()
+    const { locale, slug } = useParams()
     const [article, setArticle] = useState()
-    const slug = location.split("/")[2]
-    const locale = location.split("/")[1]
-    console.log("location:", location)
-    console.log("locale: ", locale)
-    console.log("slug: ", slug)
 
     useEffect(() => {
 

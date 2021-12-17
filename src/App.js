@@ -5,18 +5,14 @@ import {
 } from 'react-router-dom';
 import Article from './pages/Article/Article';
 
-
-
 function App() {
 
   return (
     <Router className="App">
       <Routes>
         <Route path="/" element={<Home />} exact/>
-        <Route path="/en" element={<Home/>} />
-        <Route path="/en/:englishArticle" element={<Article />} />
-        <Route path="/es" element={<Home />} />
-        <Route path="/es/:spanishArticle" element={<Article />} />
+        <Route path="/:locale" element={<Home/>} />
+        <Route path="/:locale/:slug" element={<Article />} />
       </Routes>
     </Router>
   );
