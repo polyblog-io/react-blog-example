@@ -5,7 +5,7 @@ import RecentArticles from '../../components/RecentArticles/RecentArticles';
 import Footer from '../../components/Footer/Footer';
 import { useLocation } from 'react-router-dom';
 
-const Home = ({ category, setCategory, welcomeNote, welcomeText}) => {
+const Home = () => {
     const { pathname: location } = useLocation();
 
     // console.log(location) 
@@ -17,7 +17,7 @@ const Home = ({ category, setCategory, welcomeNote, welcomeText}) => {
                 <Hero welcomeNote = 'Bienvenido a Polyblog' welcomeText='Explorar millones de artículos de blogs'/> :
                 <Hero welcomeNote="Welcome to Polyblog" welcomeText="Explore millions of blog articles"/>
             }
-            <RecentArticles category={category} setCategory={setCategory}/>
+            <RecentArticles/>
             <Footer />
         </div>
     )
