@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
+import moment from 'moment'
 import { getArticles } from '@polyblog/polyblog-js-client'
 import { useParams, Link } from 'react-router-dom'
-import ArticleCard from '../../components/ArticleCard/ArticleCard'
 import './homePage.scss'
 
-const Home = () => {
+const HomePage = () => {
   const { locale = 'en' } = useParams()
   const [articles, setArticles] = useState()
 
@@ -27,24 +27,44 @@ const Home = () => {
   }, [articles, locale])
 
   return (
-    <div className="articlesContainer">
+    <div className="container">
       <h1>Blog</h1>
       <div className="articles">
-        {articles?.map(article => (
-          <Link
-            to={{
-              pathname: `/${article.locale}/${article.slug}`,
-              article: article,
-            }}
-            key={article._id}
-            className="articleLink"
-          >
-            <ArticleCard article={article} locale={locale} />
-          </Link>
-        ))}
+        {articles?.map(
+          ({
+            _id,
+            locale,
+            slug,
+            coverUrl,
+            title,
+            author,
+            creationTime,
+            subtitle,
+          }) => (
+            <Link
+              to={{
+                pathname: `/${locale}/${slug}`,
+              }}
+              key={_id}
+              className="articleLink"
+            >
+              <div className="article" key={_id}>
+                <div className="imgContainer">
+                  <img src={coverUrl} alt={title} />
+                </div>
+                <div className="articleBody">
+                  <span>{author}</span> -{' '}
+                  <span>{moment(creationTime).format('MMMM D, YYYY')}</span>
+                  <h3>{title}</h3>
+                  <p>{subtitle}</p>
+                </div>
+              </div>
+            </Link>
+          ),
+        )}
       </div>
     </div>
   )
 }
 
-export default Home
+export default HomePage
