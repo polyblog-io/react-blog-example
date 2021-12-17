@@ -1,9 +1,8 @@
 import { getArticles } from '@polyblog/polyblog-js-client';
 import { useState, useEffect } from 'react';
-import './article.scss';
 import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
-
+import './article.scss';
 
 const Article = () => {
     const { locale, slug } = useParams()
@@ -43,9 +42,7 @@ const Article = () => {
                 </div>
             </div>
             <div className="articleBlogBody">
-                <div className="articleBlogContent">
-                  {article?.content}
-                </div>
+                <div className="articleBlogContent" dangerouslySetInnerHTML={{ __html: article?.content }} />
             </div>
         </div>
     )
