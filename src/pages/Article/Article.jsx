@@ -33,15 +33,7 @@ const Article = () => {
         <div className="article">
             <div className="articleBlogTop">
                 <div className="articleBlogHeader">
-                    <h3>Polyblog Blog</h3>
-                    <ul>
-                        <Link className="link" to="#">POLYBLOG</Link>
-                        <Link className="link" to="#">MARKETING</Link>
-                        <Link className="link" to="#">DESIGN</Link>
-                        <Link className="link" to="#">MANAGEMENT</Link>
-                        <Link className="link" to="#">TECHNOLOGY</Link>
-                        <Link className="link" to="#">ENGLISH</Link>
-                    </ul>
+                    <Link className="link" to={`/${locale}`}><h3>Blog</h3></Link>
                 </div>
                 <img src={article?.coverUrl} alt={article?.title} />
                 <div className="articleBlogHeaderOverlay"></div>
