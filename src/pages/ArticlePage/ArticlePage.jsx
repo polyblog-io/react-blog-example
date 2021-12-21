@@ -6,8 +6,6 @@ import { Link, useParams } from 'react-router-dom';
 const ArticlePage = () => {
     const { locale, slug } = useParams()
     const [article, setArticle] = useState()
-    console.log("locale: ", locale)
-    console.log("slug: ", slug)
 
     useEffect(() => {
 
@@ -19,8 +17,7 @@ const ArticlePage = () => {
                 locale,
                 slugLocalized: slug,
             })
-            // console.log('SLUG', slug)
-            // console.log({articles})
+            
             let singleArticle = articles?.[0]
             setArticle(singleArticle)
 
