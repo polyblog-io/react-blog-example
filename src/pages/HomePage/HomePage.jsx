@@ -27,7 +27,7 @@ const HomePage = () => {
 
         fetchArticles()
     }, [articles, locale])      
-    
+
     return (
         <div className="home">
             <div>

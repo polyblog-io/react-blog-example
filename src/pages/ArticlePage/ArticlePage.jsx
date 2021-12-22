@@ -38,8 +38,8 @@ const ArticlePage = () => {
                     <h1>{article?.title}</h1>
                     <h3>{article?.subtitle}</h3>
                     <i>Posted by
-                        <span> {article?.author}</span> 
-                        {/* <span>{article?.creationTime.toString()}</span> */}
+                        <span> {article?.author}</span> -
+                        <span> {new Date(article?.creationTime).toLocaleString(article?.locale, {dateStyle: 'long'})}</span>
                     </i>
                 </div>
             </div>
