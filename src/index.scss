@@ -16,6 +16,8 @@ code {
     monospace;
 }
 
+$primary-color: teal;
+
 a {
   text-decoration: none;
 }
@@ -25,7 +27,144 @@ button {
   border: none;
 }
 
-// Variables
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: flex-start;
+  padding-left: 4rem;
 
-$primary-color: rgb(51, 41, 163);
-$secondary-color: rgb(19, 200, 236);
+  .articleLink {
+    width: 30%;
+    margin-bottom: 3rem;
+    box-shadow: 0 0 3px rgba(0,0,0,.5);
+    margin-right: 2rem;
+  }
+}
+
+.article {
+    width: 100%;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+
+    .imgContainer {
+        width: 100%;
+        height: 15rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .articleBody {
+        padding: 1rem;
+
+        span {
+            color: #444;
+            font-size: .9rem;
+            font-weight: 500;
+        }
+
+        h3 {
+            color: $primary-color;
+        }
+
+        p {
+            color: #444;
+            font-size: .95rem;
+        }
+    }
+
+    &:hover {
+        transform: translateY(-.3rem);
+    }
+}
+
+.singleBlogTop {
+    position: relative;
+    height: 75vh;
+    color: white;
+
+    .singleBlogHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 8%;
+        padding-right: 8%;
+
+        .name {
+            font-size: 1.5rem;
+            color: white;
+            padding-top: 1rem;
+        }
+
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        object-fit: cover;
+    }
+
+    .singleBlogHeaderOverlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0%;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.4);
+        z-index: -2;
+    }
+
+    .singleBlogHero {
+        padding-left: 20%;
+        margin-top: 5rem;
+        max-width: 1000px;
+        position: relative;
+        z-index: 1;
+
+        h1 {
+            font-size: 3.2rem;
+            line-height: 1;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin-top: -1.5rem;
+            font-weight: 600;
+        }
+
+        i {
+            font-size: 1.1rem;
+        }
+
+    }
+}
+
+.singleBlogBody {
+    margin-top: 5rem;
+    padding-bottom: 3rem;
+
+    .singleBlogContent {
+        width: 50%;
+        margin: 0 auto;
+        letter-spacing: .08rem;
+        font-size: 1.03rem;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+    }
+}
+
+

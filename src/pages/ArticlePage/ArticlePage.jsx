@@ -1,64 +1,57 @@
-import { getArticles } from '@polyblog/polyblog-js-client'
-import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import './articlePage.scss'
+import { getArticles } from '@polyblog/polyblog-js-client';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+
 
 const ArticlePage = () => {
-  const { locale, slug } = useParams()
-  const [article, setArticle] = useState()
+    const { locale, slug } = useParams()
+    const [article, setArticle] = useState()
 
-  useEffect(() => {
-    if (article) return
-    const fetchArticles = async () => {
-      let articles = await getArticles({
-        organizationId: 'c398463407b5c12f27f9aed4',
-        project: 'polyblog',
-        locale,
-        slugLocalized: slug,
-      })
-      console.log({ articles })
-      let articleArticle = articles?.[0]
-      setArticle(articleArticle)
-    }
+    useEffect(() => {
 
-    fetchArticles()
-  }, [article, locale, slug])
+        if (article) return
+        const fetchArticle = async () => {
+            let articles = await getArticles({
+                organizationId: 'c398463407b5c12f27f9aed4',
+                project: 'polyblog',
+                locale,
+                slugLocalized: slug,
+            })
+            
+            let singleArticle = articles?.[0]
+            setArticle(singleArticle)
 
-  return (
-    <div className="article">
-      <div className="articleBlogTop">
-        <div className="articleBlogHeader">
-          <Link className="link" to={`/${locale}`}>
-            <h3>Blog</h3>
-          </Link>
-        </div>
-        {article && (
-          <>
-            <img src={article?.coverUrl} alt={article?.title} />
-            <div className="articleBlogHeaderOverlay"></div>
-            <div className="articleBlogHero">
-              <h1>{article?.title}</h1>
-              <h3>{article?.subtitle}</h3>
-              <i>
-                Posted by <span>{article?.author}</span> on{' '}
-                <span>
-                  {new Date(article?.creationTime).toLocaleString(locale, {
-                    dateStyle: 'long',
-                  })}
-                </span>
-              </i>
+        }
+
+        fetchArticle()
+    }, [article, locale, slug])
+
+    return (
+        <div className="single">
+            <div className="singleBlogTop">
+                <div className="singleBlogHeader">
+                    <Link to="/" className="name">Blog</Link>
+                </div>
+                <img src={article?.coverUrl} alt={article?.title} />
+                <div className="singleBlogHeaderOverlay"></div>
+                <div className="singleBlogHero">
+                    <h1>{article?.title}</h1>
+                    <h3>{article?.subtitle}</h3>
+                    <i>Posted by
+                        <span> {article?.author}</span> -
+                        <span> {new Date(article?.creationTime).toLocaleString(article?.locale, {dateStyle: 'long'})}</span>
+                    </i>
+                </div>
             </div>
-          </>
-        )}
-      </div>
-      <div className="articleBlogBody">
-        <div
-          className="articleBlogContent"
-          dangerouslySetInnerHTML={{ __html: article?.content }}
-        />
-      </div>
-    </div>
-  )
+            <div className="singleBlogBody">
+                <div 
+                    dangerouslySetInnerHTML={{ __html: article?.content}}
+                    className="singleBlogContent" 
+                />
+                     
+            </div>
+        </div>
+    )
 }
 
 export default ArticlePage
