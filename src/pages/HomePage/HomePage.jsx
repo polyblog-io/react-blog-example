@@ -13,7 +13,7 @@ const HomePage = () => {
     const fetchArticles = async () => {
       let articles = await getArticles({
         organizationId: 'c398463407b5c12f27f9aed4',
-        project: 'polyblog',
+        blog: 'polyblog',
         locale,
         published: true,
         sortDirection: 'DESC',
