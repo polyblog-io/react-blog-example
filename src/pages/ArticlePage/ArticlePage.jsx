@@ -13,7 +13,7 @@ const ArticlePage = () => {
       let articles = await getArticles({
         blogId: '4217f90b8eaa86551e7f7d55',
         locale,
-        slugLocalized: slug,
+        slug,
       })
       console.log({ articles })
       let articleArticle = articles?.[0]
