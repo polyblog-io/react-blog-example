@@ -37,7 +37,7 @@ const HomePage = () => {
             title,
             author,
             creationTime,
-            subtitle,
+            description,
           }) => (
             <Link
               to={{
@@ -58,7 +58,7 @@ const HomePage = () => {
                     })}
                   </span>
                   <h3>{title}</h3>
-                  <p>{subtitle}</p>
+                  <p>{description}</p>
                 </div>
               </div>
             </Link>

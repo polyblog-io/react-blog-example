@@ -37,7 +37,7 @@ const ArticlePage = () => {
             <div className="articleBlogHeaderOverlay"></div>
             <div className="articleBlogHero">
               <h1>{article?.title}</h1>
-              <h3>{article?.subtitle}</h3>
+              <h3>{article?.description}</h3>
               <i>
                 Posted by <span>{article?.author}</span> on{' '}
                 <span>
